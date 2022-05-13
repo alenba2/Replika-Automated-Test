@@ -109,6 +109,11 @@ class TestTest1():
 
         time.sleep(8)
 
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What is My favorite color?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+
+        time.sleep(8)
+        
         # Domain / Service Capability Testing
         self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tell me who the main character of Halo 2 is.")
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
