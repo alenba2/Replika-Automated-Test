@@ -109,10 +109,67 @@ class TestTest1():
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What is My favorite color?")
+        # Domain / Service Capability Testing
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tell me who the main character of Halo 2 is.")
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
+        
         time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Do you know who Link is?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Who is Link?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What is Attack on Titan?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tell me about Lilo and Stitch.")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tell me what you know about the Halo 3 story?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tell me about Halo. What is it?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Who is the Master Chief from Halo 2?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tell me the story of Halo 2.")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Hello can you do mathematics for me?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+        
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Okay, what is the square root of 64?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+        
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What is the sum of 12 + 16?")
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        
+        time.sleep(8)
+        
 
         chatlist = self.GetMessages(globeList)
         response = self.GetLastMessage(chatlist)
