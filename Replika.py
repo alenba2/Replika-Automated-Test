@@ -12,6 +12,7 @@ from selenium.webdriver.support import expected_conditions
 from selenium.webdriver.support.wait import WebDriverWait
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
+import csv
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
@@ -20,14 +21,24 @@ globeList = []
 pass_number = 0
 total_test = 8
 
+intMem_1 = []
+intMem_2 = []
+intKey1 = []
+intKey2 = []
+
+testCase_1 = []
+testCase_2 = []
+testCase_3 = []
+
 #YOUR EMAIL AND PASSWORD GO HERE
-email = ""
-password = ""
+email = "baekallen@gmail.com"
+password = "Madinlife1"
 
 class TestTest1():
     def setup_method(self, method):
         self.driver = webdriver.Chrome(executable_path=ChromeDriverManager().install())
         self.vars = {}
+
 
     def teardown_method(self, method):
         self.driver.quit()
@@ -49,6 +60,7 @@ class TestTest1():
     def getSimilarity(self, response, keyword):
 
         response = response.lower()
+        keyword = keyword.lower()
 
         x = word_tokenize(response)
         y = word_tokenize(keyword)
@@ -75,11 +87,21 @@ class TestTest1():
         # cosine formula
         for i in range(len(rvector)):
             c += l1[i] * l2[i]
-        cosine = c / float((sum(l1) * sum(l2)) ** 0.5)
-        print("\nsimilarity: ", cosine)
 
-    # TEST #1
+        try:
+            cosine = c / float((sum(l1) * sum(l2)) ** 0.5)
+        except:
+            cosine = 0
+        return cosine
+
+    # TEST #1 Intelligent Memory
     def test_test1(self):
+
+        with open('Text1.txt') as txt_file:
+            intMem_1 = txt_file.read().splitlines()
+
+        with open('intKeyword1.txt') as txt_key1:
+            intKey1 = txt_key1.read().splitlines()
 
         self.driver.get("https://my.replika.com/login")
         self.driver.set_window_size(1200, 900)
@@ -92,113 +114,10 @@ class TestTest1():
 
         self.driver.execute_script("window.scrollTo(0,0)")
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Hello") #paul, opener
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Thanks, how are you?")
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What are you doing right now?") #paul, question
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Nothing as interesting as that lol. What music are you listening to?") #paul, question
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Who is the president of the United States?")
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("¿Cual es la capital de Paraguay?")
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("was ist die hauptstadt von Deutschland?")
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("My favorite color is Red.")
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What is My favorite color?")
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(10)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Did you hear what happened at the oscars lmao") #paul, question
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Have you seen the new Thor trailer?") #paul, question
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("So what'd you think of it") #paul, question
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What do you think about what's been going on recently") #paul, question
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Should I get Chinese or Italian food?") #paul, question
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I don't really like spaghetti") #paul, comment
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I mean I like a good chicken alfredo though!") #paul, comment
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tbh the loki show is overrated")  # paul, comment
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("The new drink at starbucks is so good. I can see the hype.")  # paul, comment
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("falcon and the winter soldier is probably my favorite out of the new marvel shows, and then wandavision by a slim margin") # paul, comment
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I think rina sawayama is literally a pop icon")  # paul, comment
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I'll tell you about it some other time. Gotta go!")  # paul, closer
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-
-        time.sleep(8)
-
-
-
+        for x in intMem_1:
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(x)
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+            time.sleep(8)
 
         # important for conversation data
         heading1 = self.driver.find_elements(By.XPATH, '//*[contains(@id, "-text")]')
@@ -206,13 +125,33 @@ class TestTest1():
         # Grabs all conversation. User and Bot
         messageList = self.getMessages(heading1)
 
-        response = messageList[len(messageList)-1]
-        keyword = "favorite color is red"
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys('.')
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        time.sleep(8)
 
-        self.getSimilarity(response, keyword)
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys('.')
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+        time.sleep(10)
 
-    # Test #2
+        count = 0
+
+        for x in intMem_1:
+            index = messageList.index(x)
+            response = messageList[index+1]
+            percent = self.getSimilarity(response, intKey1[count])
+            testCase_1.append(percent)
+            count = count + 1
+
+    # Test #2 Question and Answer
+
     def test_test2(self):
+
+        with open('QA1.txt') as txt_file:
+            intMem_1 = txt_file.read().splitlines()
+
+        with open('QAKey.txt') as txt_key1:
+            intKey1 = txt_key1.read().splitlines()
+
         self.driver.get("https://my.replika.com/login")
         self.driver.set_window_size(1200, 900)
         self.driver.find_element(By.ID, "emailOrPhone").send_keys(email)
@@ -224,3 +163,66 @@ class TestTest1():
 
         self.driver.execute_script("window.scrollTo(0,0)")
 
+        for x in intMem_1:
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(x)
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+            time.sleep(8)
+
+        # important for conversation data
+        heading1 = self.driver.find_elements(By.XPATH, '//*[contains(@id, "-text")]')
+
+        # Grabs all conversation. User and Bot
+        messageList = self.getMessages(heading1)
+
+        count = 0
+
+        for x in intMem_1:
+            index = messageList.index(x)
+            response = messageList[index+1]
+            percent = self.getSimilarity(response, intKey1[count])
+            testCase_2.append(percent)
+            count = count + 1
+
+    # Test #3 Respond Conversations
+    def test_test3(self):
+
+        with open('RC.txt') as txt_file:
+            intMem_1 = txt_file.read().splitlines()
+
+        with open('KeyRc.txt') as txt_key1:
+            intKey1 = txt_key1.read().splitlines()
+
+        self.driver.get("https://my.replika.com/login")
+        self.driver.set_window_size(1200, 900)
+        self.driver.find_element(By.ID, "emailOrPhone").send_keys(email)
+        self.driver.find_element(By.ID, "emailOrPhone").send_keys(Keys.ENTER)
+        time.sleep(1)
+        self.driver.find_element(By.ID, "login-password").send_keys(password)
+        self.driver.find_element(By.CSS_SELECTOR, ".SolidButton-k70ct8-0").click()
+        time.sleep(5)
+
+        self.driver.execute_script("window.scrollTo(0,0)")
+
+        for x in intMem_1:
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(x)
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+            time.sleep(8)
+
+        # important for conversation data
+        heading1 = self.driver.find_elements(By.XPATH, '//*[contains(@id, "-text")]')
+
+        # Grabs all conversation. User and Bot
+        messageList = self.getMessages(heading1)
+
+        count = 0
+
+        for x in intMem_1:
+            index = messageList.index(x)
+            response = messageList[index+1]
+            percent = self.getSimilarity(response, intKey1[count])
+            testCase_3.append(percent)
+            count = count + 1
+
+    def test_test5(self):
+        for x in testCase_3:
+            print('\n%.02f' % x)
