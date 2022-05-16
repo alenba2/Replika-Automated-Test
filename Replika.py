@@ -31,8 +31,8 @@ testCase_2 = []
 testCase_3 = []
 
 #YOUR EMAIL AND PASSWORD GO HERE
-email = "baekallen@gmail.com"
-password = "Madinlife1"
+email = ""
+password = ""
 
 class TestTest1():
     def setup_method(self, method):
