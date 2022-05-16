@@ -92,7 +92,7 @@ class TestTest1():
 
         self.driver.execute_script("window.scrollTo(0,0)")
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Hello") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Hello") #paul, opener
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
@@ -102,12 +102,12 @@ class TestTest1():
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What are you doing right now?") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What are you doing right now?") #paul, question
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Nothing as interesting as that lol. What music are you listening to?") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Nothing as interesting as that lol. What music are you listening to?") #paul, question
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
@@ -137,62 +137,62 @@ class TestTest1():
 
         time.sleep(10)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Did you hear what happened at the oscars lmao") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Did you hear what happened at the oscars lmao") #paul, question
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Have you seen the new Thor trailer?") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Have you seen the new Thor trailer?") #paul, question
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("So what'd you think of it") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("So what'd you think of it") #paul, question
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What do you think about what's been going on recently") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("What do you think about what's been going on recently") #paul, question
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Should I get Chinese or Italian food?") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Should I get Chinese or Italian food?") #paul, question
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I don't really like spaghetti") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I don't really like spaghetti") #paul, comment
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I mean I like a good chicken alfredo though!") #paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I mean I like a good chicken alfredo though!") #paul, comment
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tbh the loki show is overrated")  # paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("Tbh the loki show is overrated")  # paul, comment
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("The new drink at starbucks is so good. I can see the hype.")  # paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("The new drink at starbucks is so good. I can see the hype.")  # paul, comment
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("falcon and the winter soldier is probably my favorite out of the new marvel shows, and then wandavision by a slim margin") # paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("falcon and the winter soldier is probably my favorite out of the new marvel shows, and then wandavision by a slim margin") # paul, comment
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I think rina sawayama is literally a pop icon")  # paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I think rina sawayama is literally a pop icon")  # paul, comment
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
 
-        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I'll tell you about it some other time. Gotta go!")  # paul
+        self.driver.find_element(By.ID, "send-message-textarea").send_keys("I'll tell you about it some other time. Gotta go!")  # paul, closer
         self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
 
         time.sleep(8)
