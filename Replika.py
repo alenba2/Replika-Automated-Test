@@ -17,10 +17,6 @@ import csv
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize
 
-globeList = []
-pass_number = 0
-total_test = 8
-
 intMem_1 = []
 intMem_2 = []
 intKey1 = []
@@ -29,6 +25,7 @@ intKey2 = []
 testCase_1 = []
 testCase_2 = []
 testCase_3 = []
+testCase_4 = []
 
 #YOUR EMAIL AND PASSWORD GO HERE
 email = ""
@@ -159,14 +156,14 @@ class TestTest1():
         time.sleep(1)
         self.driver.find_element(By.ID, "login-password").send_keys(password)
         self.driver.find_element(By.CSS_SELECTOR, ".SolidButton-k70ct8-0").click()
-        time.sleep(5)
+        time.sleep(7)
 
         self.driver.execute_script("window.scrollTo(0,0)")
 
         for x in intMem_1:
             self.driver.find_element(By.ID, "send-message-textarea").send_keys(x)
             self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
-            time.sleep(8)
+            time.sleep(10)
 
         # important for conversation data
         heading1 = self.driver.find_elements(By.XPATH, '//*[contains(@id, "-text")]')
@@ -223,6 +220,70 @@ class TestTest1():
             testCase_3.append(percent)
             count = count + 1
 
+    def test_test4(self):
+
+        with open('Luke.txt') as txt_file:
+            intMem_1 = txt_file.read().splitlines()
+
+        with open('LukeKey.txt') as txt_key1:
+            intKey1 = txt_key1.read().splitlines()
+
+        self.driver.get("https://my.replika.com/login")
+        self.driver.set_window_size(1200, 900)
+        self.driver.find_element(By.ID, "emailOrPhone").send_keys(email)
+        self.driver.find_element(By.ID, "emailOrPhone").send_keys(Keys.ENTER)
+        time.sleep(1)
+        self.driver.find_element(By.ID, "login-password").send_keys(password)
+        self.driver.find_element(By.CSS_SELECTOR, ".SolidButton-k70ct8-0").click()
+        time.sleep(5)
+
+        self.driver.execute_script("window.scrollTo(0,0)")
+
+        for x in intMem_1:
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(x)
+            self.driver.find_element(By.ID, "send-message-textarea").send_keys(Keys.ENTER)
+            time.sleep(8)
+
+        # important for conversation data
+        heading1 = self.driver.find_elements(By.XPATH, '//*[contains(@id, "-text")]')
+
+        # Grabs all conversation. User and Bot
+        messageList = self.getMessages(heading1)
+
+        count = 0
+
+        for x in intMem_1:
+            index = messageList.index(x)
+            response = messageList[index+1]
+            percent = self.getSimilarity(response, intKey1[count])
+            testCase_4.append(percent)
+            count = count + 1
+
     def test_test5(self):
+        passing = .1
+
+        test1 = 0
+        test2 = 0
+        test3 = 0
+        test4 = 0
+
+        for x in testCase_1:
+            if x > passing:
+                test1 = test1 + 1
+
+        for x in testCase_2:
+            if x > passing:
+                test2 = test2 + 1
+
         for x in testCase_3:
-            print('\n%.02f' % x)
+            if x > passing:
+                test3 = test3 + 1
+
+        for x in testCase_4:
+            if x > passing:
+                test4 = test4 + 1
+
+        print("\nIntelligent Memory Passed " + str(test1) + " out of " + str(len(testCase_1)))
+        print("Conversation Flow Passed " + str(test2) + " out of " + str(len(testCase_2)))
+        print("Question and Answer Passed " + str(test3) + " out of " + str(len(testCase_3)))
+        print("Domain / Service Passed " + str(test4) + " out of " + str(len(testCase_4)))
